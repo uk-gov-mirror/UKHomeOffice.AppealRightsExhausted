@@ -3,6 +3,8 @@
 'use strict';
 
 const hof = require('hof');
+const react = require('hof-util-react');
+
 let settings = require('./hof.settings');
 const ExclusionDates = require('./apps/are_form/models/exclusion_dates');
 const config = require('./config.js');
@@ -26,7 +28,10 @@ const exclusionDates = new ExclusionDates();
 
 exclusionDates.saveExclusionDays()
   .then(() => {
+    const HelloWorld = require('./apps/are_form/views/components/HelloWorld.jsx');
     const app = hof(settings);
+
+    app.use(react(HelloWorld));
 
     app.use((req, res, next) => {
       res.locals.htmlLang = 'en';
