@@ -18,6 +18,7 @@ Given('I selected the data for scenario {string} - {string}', async ({}, scenari
 
 When('I visit the Appeal Rights Exhausted Date Calculator page', async ({ pages }) => {
   await pages.areFirstPage.navigateToUrl();
+  await pages.areFirstPage.acceptCookiesIfPresent();
 });
 
 Then('the user should be on {string} page', async ({ pages }, expectedPage: string) => {

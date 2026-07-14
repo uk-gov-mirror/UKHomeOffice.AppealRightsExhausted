@@ -7,6 +7,8 @@ export class basePage {
   readonly calculateButton: Locator;
   readonly startAgainButton: Locator;
   readonly errorSummaryTitle: Locator;
+  readonly acceptCookieButton: Locator;
+  readonly hideThisMessageButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,10 +16,22 @@ export class basePage {
     this.calculateButton = page.locator("input[value='Calculate']");
     this.startAgainButton = page.locator("input[value='Start again']");
     this.errorSummaryTitle = page.locator('#error-summary-title');
+    this.acceptCookieButton = page.locator('#accept-cookies-button');
+    this.hideThisMessageButton = page.locator('#hide-accept-cookie-banner');
   }
 
   async navigateToUrl() {
     await this.page.goto('/');
+  }
+
+  async acceptCookiesIfPresent() {
+    if (await this.acceptCookieButton.isVisible()) {
+      await this.click(this.acceptCookieButton);
+    }
+
+    if (await this.hideThisMessageButton.isVisible()) {
+      await this.click(this.hideThisMessageButton);
+    }
   }
 
   async click(locator: Locator) {
