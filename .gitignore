@@ -24,9 +24,9 @@ apps/**/translations/**/*
 test/_accessibility/tmp/*
 .devcontainer/*.env
 # Playwright
-/test-results/
-playwright-report/
+test-results
+playwright-report
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-.features-gen/
+.features-gen

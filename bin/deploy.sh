@@ -55,6 +55,9 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   echo "Branch internal 2 - are-$DRONE_SOURCE_BRANCH.internal.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Branch external 1 - are-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
   echo "Branch external 2 - $DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk"
+  if [[ -d /root/.dockersock ]]; then
+    printf '%s' "are-$DRONE_SOURCE_BRANCH.$BRANCH_ENV.homeoffice.gov.uk" > /root/.dockersock/branch_url.txt
+  fi
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   echo "UAT internal 1 - are.uat.internal.sas-notprod.homeoffice.gov.uk"
   echo "UAT internal 2 - $APP_NAME.uat.internal.sas-notprod.homeoffice.gov.uk"
